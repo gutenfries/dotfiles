@@ -143,5 +143,3 @@ Set-PSReadLineKeyHandler -Key Shift+Tab `
 		[Microsoft.PowerShell.PSConsoleReadLine]::AcceptSuggestion($key, $arg)
 	}
 }
-
-Write-Output "Applying Profile from ~/.pwshrc.ps1"
