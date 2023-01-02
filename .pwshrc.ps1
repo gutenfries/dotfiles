@@ -90,7 +90,7 @@ Set-Alias rm Invoke-rm
 # set for starship
 $OS = $env:OS
 Set-Alias $OS $env:OS
-$ENV:STARSHIP_CONFIG = "$HOME\starship.toml"
+$ENV:STARSHIP_CONFIG = "$HOME\.config\starship.toml"
 Invoke-Expression (& starship init powershell)
 
 # manages the window title:

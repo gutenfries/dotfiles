@@ -9,7 +9,7 @@
 !clang-format*
 !README.md
 !LICENSE
-!starship.toml
+!.config/starship.toml
 !.wslconfig
 !.pwshrc.*
 !fonts/*
