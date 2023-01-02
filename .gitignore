@@ -11,7 +11,7 @@
 !LICENSE
 !.config/starship.toml
 !.wslconfig
-!.pwshrc.*
+!.pwshrc
 !fonts/*
 !.SpaceVim.d/*
 
