@@ -1,0 +1,13 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = Mark Gutenberger
+  email = gutenfries@gmail.com
+[core]
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
