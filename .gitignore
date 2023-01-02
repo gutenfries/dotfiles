@@ -1,6 +1,7 @@
 *
-!*.gitignore
-!*.gitconfig
+**/*
+
+!*.git*
 !*.eslint*
 !*.prettier*
 !*.rustfmt*
@@ -11,4 +12,6 @@
 !starship.toml
 !.wslconfig
 !.pwshrc.*
-!fonts/**/*
+!fonts/*
+!.SpaceVim.d/*
+
