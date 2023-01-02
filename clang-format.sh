@@ -1,27 +1,37 @@
-#!/bin/bash
-# SPDX-License-Identifier: MIT
-# Author: Mark Gutenberger <mark-gutenberger@outlook.com>
-# clang-format.sh (c) 2022
-# Created:  2022-02-23T03:36:52.086Z
-# Modified: 2022-03-04T13:45:43.257Z
+#! /bin/bash
 
+function clang_format() {
+	echo "finding files..."
+	find . -type f \( \
+		-name "*.c" -o \
+		-name "*.cpp" -o \
+		-name "*.cc" -o \
+		-name "*.h" -o \
+		-name "*.hpp" -o \
+		-name "*.hh" -o \
+		-name "*.m" -o \
+		-name "*.mm" \
+		\) \
+		-not -path "*/target/*" \
+		-not -path "*/node_modules/*" \
+		-not -path "*/build/*" \
+		-not -path "*/ephemeral/*" \
+		-print0 | xargs -0 clang-format --verbose --style=file -i
+}
 
+function find_clang_format() {
+	# Check if clang-format is installed
+	if ! command -v clang-format >/dev/null 2>&1; then
+		echo "Error: clang-format is not installed"
+		exit 1
+	fi
+}
 
-THIS_PATH="$(realpath "$0")"
-THIS_DIR="$(dirname "$THIS_PATH")"
-FILE_LIST="$(find . -type d -name 'node_modules' -prune \
--o -name '*.c' \
--o -name '*.cc' \
--o -name '*.cpp' \
--o -name '*.h' \
--o -name '*.hh' \
--o -name '*.hpp' \
--o -name '*.m' \
--o -name '*.hm' \
--o -name '*.cs' \
--o -name '*.rc' \
--o -name -print)"
+function main() {
+	cd ..
+	echo "Running clang-format..."
+	find_clang_format
+	clang_format
+}
 
-echo -e "\e[0;33mFiles found to format = \n\"\"\"\n$FILE_LIST\n\"\"\"\e[0m"
-
-clang-format --verbose -i --style=file $FILE_LIST
+main
