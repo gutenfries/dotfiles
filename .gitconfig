@@ -4,7 +4,7 @@
 	required = true
 	clean = git-lfs clean -- %f
 [user]
-	name = Mark Gutenberger
+	name = Marc Gutenberger
 	email = gutenfries@gmail.com
 [core]
 	filemode = false
