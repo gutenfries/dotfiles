@@ -8,52 +8,59 @@ Import-Module -Name CompletionPredictor
 $env:PYTHONIOENCODING = "utf-8"
 $env:PYTHON_HOST_PROG = "C:\Python311\"
 $env:PYTHON3_HOST_PROG = "C:\Python311\"
-$env:lsd = ""
 
 # User Defined Functions:
-function Invoke-Admin () {
-	if ($Args.Count -eq 0) {
+function Invoke-Admin ()
+{
+	if ($Args.Count -eq 0)
+	{
 		return "Invoke-Admin: No command specified"
-	}
- else {
+	} else
+	{
 		# group arguments into a single string
 		$command = $Args[0]
 		$arguments = $Args[1..$Args.Count]
 		$arguments = $arguments -join " "
 
 		# invoke command
-		try {
+		try
+		{
 			$process = Start-Process -FilePath $command -ArgumentList $arguments -Verb RunAs -Wait -PassThru
 			# return "Exit: $process.ExitCode"
 			return $process.ExitCode
-		}
-		catch {
+		} catch
+		{
 			return "Error: $_"
 		}
 	};
 };
 
-function Invoke-Batstat () {
+function Invoke-Batstat ()
+{
 	WMIC PATH Win32_Battery Get EstimatedChargeRemaining
 };
 
-function Invoke-ls() {
-	try {
+function Invoke-ls()
+{
+	try
+	{
 		# default to showing all files
-		& $env:lsd -A $Args
-	}
- catch {
-		Write-Host "Warning: No batch operation, program, or executable matching the pattern of $lsd or $lsd_debug found...`n Please update your powershell profile" -ForegroundColor Yellow
+		& $ENV:USERPROFILE\.cargo\bin\lsd.exe -A $Args
+	} catch
+	{
+		Write-Host "Warning: LSD not installed" -ForegroundColor Yellow
 		Get-ChildItem $Args
 	}
 };
 
-function Set-Location-Up() {
+function Set-Location-Up()
+{
 	Set-Location ..
 }
 
 
-function Invoke-rm() {
+function Invoke-rm()
+{
 	Remove-Item $Args -Force -Recurse
 }
 
@@ -67,7 +74,8 @@ Set-Alias rm Invoke-rm
 
 ######################################################################
 
-function Init() {
+function Init()
+{
 	# set for starship
 	$OS = $env:OS
 	Set-Alias $OS $env:OS
@@ -97,10 +105,11 @@ function Init() {
 		$cursor = $null
 		[Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
 
-		if ($cursor -lt $line.Length) {
+		if ($cursor -lt $line.Length)
+		{
 			[Microsoft.PowerShell.PSConsoleReadLine]::ForwardChar($key, $arg)
-		}
-		else {
+		} else
+		{
 			[Microsoft.PowerShell.PSConsoleReadLine]::AcceptNextSuggestionWord($key, $arg)
 		}
 	}
@@ -115,10 +124,11 @@ function Init() {
 		$cursor = $null
 		[Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
 
-		if ($cursor -lt $line.Length) {
+		if ($cursor -lt $line.Length)
+		{
 			[Microsoft.PowerShell.PSConsoleReadLine]::ForwardChar($key, $arg)
-		}
-		else {
+		} else
+		{
 			[Microsoft.PowerShell.PSConsoleReadLine]::AcceptSuggestion($key, $arg)
 		}
 	}
