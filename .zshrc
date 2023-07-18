@@ -240,7 +240,7 @@ if [ -x /usr/bin/dircolors ]; then
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 fi
 
-alias ls='/home/mark-/dev/lsd/target/release/lsd -A'
+alias ls='lsd -A'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
@@ -259,3 +259,5 @@ eval "$(starship init zsh)"
 export OS=$(uname)
 
 eval $(thefuck --alias)
+
+export PATH=$PATH:/$HOME/.cargo/bin/
