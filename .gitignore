@@ -2,7 +2,8 @@
 **/*
 
 !*.git*
-!*.zsh*
+!*.zshrc
+!*.bashrc
 !*.eslint*
 !*.prettier*
 !*.rustfmt*
@@ -15,7 +16,6 @@
 !.wslconfig
 !.pwshrc
 !fonts/*
-!.SpaceVim.d/*
 !.git/
 !Documents/PowerShell/Microsoft.PowerShell_profile.ps1
 
