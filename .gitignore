@@ -1,8 +1,10 @@
 !*.git*
+!*.zsh*
 !*.eslint*
 !*.prettier*
 !*.rustfmt*
 !backspace.vim
+!.markdownlint*
 !clang-format*
 !README.md
 !LICENSE
