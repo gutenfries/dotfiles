@@ -13,8 +13,6 @@
 [Tt]est[Rr]esult*/
 [Cc]overage/
 [Ss]pec/
-*.spec*
-*.test*
 
 ### Logs Rules ###
 *.info.json
@@ -56,6 +54,8 @@ version_tmp/
 [Rr]eleasePS/
 [Tt]arget/
 bld/
+dist/
+out/
 
 ### Binary/Executable Rules ###
 *.os
@@ -127,6 +127,7 @@ null*
 .yarn-integrity
 npm-debug.*
 jspm_packages/
+node_modules/
 typings/
 .npm
 .eslintcache

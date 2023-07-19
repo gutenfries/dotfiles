@@ -25,9 +25,9 @@ function Invoke-Admin ()
 		# invoke command
 		try
 		{
-			$process = Start-Process -FilePath $command -ArgumentList $arguments -Verb RunAs -Wait -PassThru
-			# return "Exit: $process.ExitCode"
-			return $process.ExitCode
+			$process = Start-Process -FilePath $($command) -ArgumentList $arguments -Verb RunAs -Wait -PassThru
+
+			return "completed with exit code ${process.ExitCode}"
 		} catch
 		{
 			return "Error: $_"
