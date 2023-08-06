@@ -281,9 +281,12 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 iOSInjectionProject/
+
+
 ### Rust Rules ###
 Cargo.lock
 **/*.rs.bk
+target/
 
 ### Qt Rules ###
 object_script.*.Release

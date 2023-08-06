@@ -7,7 +7,6 @@ command_timeout = 2000
 scan_timeout = 500
 
 format = """\
-[$time on ${custom.OS} ](bold white)$memory_usage$cmd_duration
 $battery\
 $sudo$username\
 $hostname\
