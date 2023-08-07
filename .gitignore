@@ -2,7 +2,7 @@
 **/*
 
 !*.git*
-!*.zshrc
+!*.zsh
 !*.bashrc
 !*.eslint*
 !*.prettier*
@@ -12,7 +12,6 @@
 !clang-format*
 !README.md
 !LICENSE
-!.config/starship.toml
 !.wslconfig
 !.pwshrc
 !fonts/*
