@@ -1,8 +1,11 @@
 *
 **/*
+.eslint*d
+.prettierd*
 
 !*.git*
-!*.zsh
+!*.zshenv
+!*.zshrc
 !*.bashrc
 !*.eslint*
 !*.prettier*
@@ -17,6 +20,3 @@
 !fonts/*
 !.git/
 !Documents/PowerShell/Microsoft.PowerShell_profile.ps1
-
-.eslint*d
-.prettierd*

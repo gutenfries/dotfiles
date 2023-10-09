@@ -1,15 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -21,7 +13,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -52,25 +44,46 @@ source $ZSH/oh-my-zsh.sh
 
 alias ls='lsd -A'
 
-# enable command-not-found if installed
-if [ -f /etc/zsh_command_not_found ]; then
-	. /etc/zsh_command_not_found
-fi
+alias aptup='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y'
 
-export OS=$(uname)
+# Define a custom function for 'rm' that adds extra confirmation
+safe_rm() {
+    local critical_dirs=("/" "$HOME")
+
+    for dir in "${critical_dirs[@]}"; do
+        if [[ "$1" == "$dir"* ]]; then
+            read -q "REPLY?Are you sure you want to delete '$1'? [y/n] "
+            echo
+            if [[ "$REPLY" != "y" ]]; then
+                echo "Deletion of '$1' canceled."
+                return 1
+            fi
+        fi
+    done
+
+    # Call the real 'rm' command with the arguments passed to this function
+    command trash "$@"
+}
+
+# Alias 'rm' to our custom function
+alias rm=safe_rm
+
+# alias nautilus becuase i can never remember what it's called
+alias explorer=nautilus
+
+# enable command-not-found if install
+source /etc/zsh_command_not_found
 
 eval $(thefuck --alias)
 
-export PATH=$PATH:/$HOME/.cargo/bin/:/$HOME/.bin/:$HOME/.pub-cache/bin
-
-# eval "$(starship init zsh)"
-
 export NVM_DIR="$HOME/.nvm"
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 fpath=($fpath "/home/gutenfries/.zfunctions")
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || \
 source ~/.p10k.zsh
+
+export PATH=$PATH:/$HOME/.cargo/bin/:/$HOME/.bin/:$HOME/.pub-cache/bin
